@@ -1,0 +1,19 @@
+SELECT [PHOTO],[F_NAME],[M_NAME],[L_NAME] FROM [CRM_508].[dbo].[CARD_PEOPLES] where People_ID in (10000000000354)
+Select Account from gkArcade.gk.Machines where Machine = 2239 and LastCardRead > Convert(datetime,'2015-06-06 19:59:14.000')
+select Account, LastCardRead from gkArcade.gk.Machines where Machine = 2239 and LastCardRead > Convert(datetime,'2015-06-06 19:59:14.000')
+
+
+Insert into Persons VALUES (2,'Smile',(SELECT *FROM OPENROWSET(BULK N'C:\Test\smile.jpg', SINGLE_BLOB) test) )
+
+Insert into gk.dbo.Machines(Account,LastCardRead,Machine)
+			 VALUES ('10000000000354',convert(datetime,'18-06-12 10:34:09 PM',5),'2239')
+
+			 
+SELECT [PHOTO]
+      ,[F_NAME]
+      ,[M_NAME]
+      ,[L_NAME]
+      ,[FULL_NAME]
+  FROM [CRM_508].[dbo].[CARD_PEOPLES] where 
+  PEOPLE_ID IN (select PEOPLE_ID from [CRM_508].dbo.[CARD_CARDS] where CARD_CODE IN (
+  SELECT [CARD] FROM [gkArcade].[gk].[TRANSACTS] where ACCOUNT = 354 and CREATORADDR = 2239 and CREATORDATE = Convert(datetime,'2015-06-06 19:59:16.000')))
